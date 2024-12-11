@@ -18,7 +18,7 @@ export default {
         alabaster: 'hsl(231, 100%, 99%)',
       },
       backgroundImage: {
-        mobile: 'url("./src/assets/bg-sidebar-mobile.svg")',
+        mobile: "url('./src/assets/bg-sidebar-mobile.svg')",
       }
     },
   },
