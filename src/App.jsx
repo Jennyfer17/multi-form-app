@@ -66,7 +66,7 @@ function handleClickBack() {
       </main> 
       <section className='absolute bottom-0 w-full bg-white h-[5em]'>
         <div className='flex justify-between px-4 items-center h-full w-full'>
-        <button className='' onClick={handleClickBack}>Back</button>
+        <button className='text-cool_gray font-medium hover:text-marine_blue' onClick={handleClickBack}>Go Back</button>
 
         <button className=' bg-marine_blue px-4 py-3 rounded-md text-white' onClick={handleClickNext}>Next Step</button>
         </div>
