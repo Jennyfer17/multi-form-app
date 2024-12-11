@@ -5,7 +5,7 @@ import Plan from './components/Plan'
 import AddOns from './components/AddOns'
 import Finishing from './components/Finishing'
 import Thanks from './components/Thanks'
-
+import Button from './components/Button'
 
 function App() {
 
@@ -16,6 +16,12 @@ const [pageList,setPageList] = useState(
     <AddOns/>,
     <Plan/>,
   ]
+)
+const numberOfSteps = [1,2,3,4]
+const stepComponent = numberOfSteps.map(
+  (item, index)=>{
+    return <Button step={item} key={index}/>
+  }
 )
 
 const [currentPage,setCurrentPage] = useState(<PersonalInfo/>);
@@ -46,16 +52,20 @@ function handleClickBack() {
 }
  
   return (
-    <div className='h-full relative mt-4'>
-      <section>
-        
+    <div className='h-full bg-slate-500 relative'>
+      <section className='flex w-full h-[5em] justify-between bg-mobile'>
+        {stepComponent}
       </section>
-      <main className=' bg-white p-4 rounded-md w-fit'>
+      <main className=' bg-white p-4 rounded-md w-[20em] m-auto'>
         {currentPage}
       </main>
-      <section>
-        <button className='absolute bottom-0 left-0' onClick={handleClickBack}>Back</button>
-        <button className='absolute bottom-0 right-0 bg-marine_blue px-4 py-3 rounded-md text-white' onClick={handleClickNext}>Next Step</button>
+      <section className='absolute bottom-0 w-full bg-white h-[5em]'>
+        <div className='flex justify-between px-2 items-center h-full w-full'>
+        <button className='' onClick={handleClickBack}>Back</button>
+
+        <button className=' bg-marine_blue px-4 py-3 rounded-md text-white' onClick={handleClickNext}>Next Step</button>
+        </div>
+
       </section>
     </div>
   )
