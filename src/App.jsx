@@ -9,15 +9,28 @@ import Button from './components/Button'
 
 function App() {
 
-const [pageList,setPageList] = useState(
-  [
-    <Thanks/>,
-    <Finishing/>,
-    <AddOns/>,
-    <Plan/>,
-  ]
-)
-const [currentPage,setCurrentPage] = useState(<PersonalInfo/>);
+  
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone_number: "",
+    plan: "",
+    plan_price: "",
+    add_on: "",
+    add_on_price: "",
+    isToggle: false
+  })
+
+  const handleChange=(event)=>{
+    const {name, value, type, checked} = event.target
+    setForm(
+      prevForm=>{
+        return {...prevForm,[name]: type=="checkbox"?checked:value}
+      }
+    )
+
+
+  }
 
 const numberOfSteps = [1,2,3,4]
 const [counter,setCounter] = useState(0)
@@ -29,46 +42,40 @@ const stepComponent = numberOfSteps.map(
   }
 )
 
-const [oldPage, setOldPage] = useState([])
-
   function handleClickNext() {
-    setCounter(i=>i+1)
-    let temp1;
-    setPageList((oldData)=>{
-      let temp2 = [...oldData]
-      temp1 = temp2.pop()
-      setCurrentPage(temp1)
-      return temp2
-    }
-  )
-    setOldPage((oldData)=>[...oldData, currentPage])      
+    setCounter(i=>i+1)    
 }
 
 function handleClickBack() {
   setCounter(i=>i-1)
-  let temp1
-  setOldPage((oldData)=>{
-    let temp2 = [...oldData]
-    temp1 = temp2.pop()
-    setCurrentPage(temp1)
-    return temp2;
-  })
-  setPageList((oldData)=>[...oldData,currentPage])
 }
- 
+
   return (
     <div className='h-full w-full relative'>
       <section className='flex w-full bg-cover h-[10em] bg-no-repeat justify-center gap-7 bg-mobile p-6'>
         {stepComponent}
       </section>
       <main className='bg-white p-4 rounded-md w-[22em] left-0 right-0 mx-auto top-[7em] absolute'>
-        {currentPage}
+        {counter==0 && <PersonalInfo name={form.name} email={form.email} phone={form.phone_number} handleChange={handleChange}/>}
+        {counter==1 && <Plan isToggle={form.isToggle} plan={form.plan} handleChange={handleChange}/>}
+        {counter==2 && <AddOns/>}
+        {counter==3 && <Finishing/>}
+        {counter==4 && <Thanks/>}
       </main> 
-      <section className='absolute bottom-0 w-full bg-white h-[5em]'>
+      {/* <section className='absolute bottom-0 w-full bg-white h-[5em]'>
         <div className='flex justify-between px-4 items-center h-full w-full'>
-        <button className='text-cool_gray font-medium hover:text-marine_blue' onClick={handleClickBack}>Go Back</button>
+        {counter!=0 && <button className='text-cool_gray font-medium hover:text-marine_blue' onClick={handleClickBack}>Go Back</button>}
 
         <button className=' bg-marine_blue px-4 py-3 rounded-md text-white' onClick={handleClickNext}>Next Step</button>
+        </div>
+
+      </section> */}
+
+    <section className='absolute bottom-0 w-full bg-white h-[5em]'>
+        <div className='relative px-4 items-center h-full w-full'>
+        {counter!=0 && <button className='text-cool_gray font-medium hover:text-marine_blue absolute left-0 my-7 mx-5' onClick={handleClickBack}>Go Back</button>}
+
+        <button className=' bg-marine_blue px-4 py-3 rounded-md text-white absolute right-0 m-5' onClick={handleClickNext}>Next Step</button>
         </div>
 
       </section>
