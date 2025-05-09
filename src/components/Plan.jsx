@@ -9,11 +9,11 @@ export default function Plan({isToggle, plan,  handleChange}) {
         <div className="text-justify">
             <h2 className="text-2xl text-marine_blue font-bold pt-6">Select your plan</h2>
             <p className="my-4 text-cool_gray text-lg">You have the option of monthly or yearly biling.</p>
-            <section className="flex flex-col gap-2 *:rounded-md *:ring-1 *:p-2 *:cursor-pointer *:w-full *:flex *:h-[5em] mt-4 *:items-center *:ring-light_gray">
+            <section className="flex flex-col gap-2 *:rounded-md *:ring-1 *:p-2 *:cursor-pointer *:w-full *:flex *:h-[5em] mt-4 *:items-center *:ring-light_gray md:flex-row md:h-56 md:*:h-full md:*:grid">
                 <label htmlFor="arcade" className="has-[:checked]:bg-magnolia has-[:checked]:ring-purplish_blue">
                     <input type="radio" className="hidden" id="arcade" name="plan" value={`arcade-${isToggle?"90/yr":"9/mo"}`} checked={plan==`arcade-${isToggle?"90/yr":"9/mo"}`} onChange={handleChange}/>
                     <img src={arcade} alt="arcade"/>
-                    <legend className="pl-2 leading-tight">
+                    <legend className="pl-2 leading-ti  ght">
                         <h3 className="text-marine_blue font-bold">Arcade</h3>
                         <span className="text-cool_gray">$9{isToggle?"0/yr":"/mo"}</span>
                         <p className="text-marine_blue font-medium">{isToggle?"2 months free":""}</p>

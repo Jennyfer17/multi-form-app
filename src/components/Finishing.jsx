@@ -37,7 +37,7 @@ export default function Finishing({plan, isYearly, add_ons}) {
             <h2 className="text-2xl text-marine_blue font-bold pt-6">Finishing up</h2>
             <p className="my-4 text-cool_gray text-lg">Double-check everything looks OK before confirming.</p>
 
-            <section className="bg-magnolia rounded-sm p-4">
+            <section className="bg-magnolia rounded-[10px] p-4">
                 <div className="flex items-center justify-between w-full">
                     <div className="w-full">
                         <h3 className="text-marine_blue font-medium">{plan_name} ({isYearly?"Yearly":"Monthly"})</h3>
